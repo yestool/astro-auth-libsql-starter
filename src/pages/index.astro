@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const user = Astro.locals.user;
+const dbUser = Astro.locals.dbUser;
+---
+
+<BaseLayout title="Home">
+    <h1>Welcome to Astro Starter</h1>
+    {user ? (
+        <div>
+            <p>Logged in as {user.email}</p>
+            <p>Your user ID is {user.id} . Your role is { dbUser?.role }.</p>
+            <form method="post" action="/api/logout">
+                <button>Sign out</button>
+            </form>
+        </div>
+    ): (
+        <a href="/login">Login</a>
+    )}
+</BaseLayout>
+
+
+<script>
+	document.forms[0].addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const formElement = e.target as HTMLFormElement;
+		await fetch(formElement.action, {
+			method: formElement.method,
+			body: new FormData(formElement)
+		});
+		window.location.href = "/login";
+	});
+</script>

@@ -1,0 +1,24 @@
+{
+  "name": "astro-cms",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --remote",
+    "exedb": "astro db execute db/seed.ts --remote",
+    "dbpush": "astro db push --remote --force-reset",
+    "build": "astro build --remote",
+    "preview": "astro preview",
+    "astro": "astro login",
+    "start": "node ./dist/server/entry.mjs"
+  },
+  "dependencies": {
+    "@astrojs/db": "^0.14.5",
+    "@astrojs/node": "^9.0.0",
+    "@libsql/client": "^0.14.0",
+    "@node-rs/argon2": "^2.0.2",
+    "astro": "^5.1.4",
+    "lucia": "^3.2.2",
+    "lucia-adapter-astrodb": "^0.2.0",
+    "nanoid": "^5.0.9"
+  }
+}

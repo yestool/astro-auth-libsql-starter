@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { db } from 'astro:db';
+import * as userSql from '@/sql/userSql'
+
+const userData = await db.run(userSql.getAllUser())
+const users = userData.rows
+console.log(JSON.stringify(users, null, 2));
+
+---
+
+<BaseLayout title="Home">
+  <h1>Test</h1>
+  <div>
+  {
+    users.map((user) => (
+      <p>{user.name}----{user.email}</p>
+    ))
+  }
+</div>
+</BaseLayout>
+
